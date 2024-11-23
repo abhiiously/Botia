@@ -27,10 +27,21 @@ jobs:
         username: ${{ vars.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+    - name: Check Docker Hub Username
+      run: echo "Using Docker Hub username: ${{ vars.DOCKERHUB_USERNAME }}"
+
     - name: Build and push Docker image
       uses: docker/build-push-action@v6
       with:
         context: .
         file: ./Dockerfile
         push: true
-        tags: abhiiously/botia:latest
+        tags: ${{ vars.DOCKERHUB_USERNAME }}/botia:latest
+        provenance: false
+        platforms: linux/amd64
+        outputs: type=docker,dest=/tmp/myimage.tar
+        
+    - name: Verify image
+      run: |
+        docker load < /tmp/myimage.tar
+        docker image ls    
