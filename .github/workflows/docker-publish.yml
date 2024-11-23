@@ -22,10 +22,9 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v5
         with:
           context: .
           push: true
           tags: ${{ vars.DOCKERHUB_USERNAME }}/botia:latest
-          build-args: |
-            GITHUB_REPO=${{ github.repository }}
+          platforms: linux/amd64
