@@ -17,7 +17,7 @@ RUN apt-get update && \
 # Clone the GitHub repository (this will be replaced with your actual repo)
 # Note: If your repo is private, you'll need to set up SSH keys or use HTTPS with credentials
 ARG GITHUB_REPO
-RUN git clone https://github.com/${GITHUB_REPO}.git .
+RUN git clone https://github.com/abhiiously/Botia.git .
 
 # Set Python environment variables
 ENV PYTHONDONTWRITEBYTECODE=1 \
