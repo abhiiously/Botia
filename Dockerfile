@@ -8,7 +8,9 @@ RUN apt-get update && apt-get install -y git && apt-get clean
 RUN git clone https://github.com/abhiiously/Botia.git /app
 
 # Set working directory
+RUN mkdir -p /app
 WORKDIR /app
+COPY . /app
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
