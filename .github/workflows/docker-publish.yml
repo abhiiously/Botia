@@ -28,7 +28,7 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: Check Docker Hub Username
-      run: echo "Using Docker Hub username: ${{ vars.DOCKERHUB_USERNAME }}"
+      run: echo Using Docker Hub username: ${{ vars.DOCKERHUB_USERNAME }}
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v6
