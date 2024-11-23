@@ -10,7 +10,7 @@ RUN git clone https://github.com/abhiiously/Botia.git /app
 # Set working directory
 RUN mkdir -p /app
 WORKDIR /app
-COPY / /app
+COPY /parsers /app/parsers
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
