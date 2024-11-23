@@ -30,4 +30,4 @@ jobs:
       with:
         context: .
         push: true
-        tags: yourdockerhubusername/botia:latest
+        tags: abhiiously/botia:latest
