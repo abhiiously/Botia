@@ -37,11 +37,3 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: ${{ vars.DOCKERHUB_USERNAME }}/botia:latest
-        provenance: false
-        platforms: linux/amd64
-        outputs: type=docker,dest=/tmp/myimage.tar
-        
-    - name: Verify image
-      run: |
-        docker load < /tmp/myimage.tar
-        docker image ls    
