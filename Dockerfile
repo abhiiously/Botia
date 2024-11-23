@@ -1,3 +1,5 @@
+# Dockerfile
+
 # Use the official Python image as the base
 FROM python:3.12-slim
 
@@ -12,7 +14,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
-# Copy project files
+# Copy project files, excluding those in .dockerignore
 COPY . .
 
 # Define the default command to run the bot
