@@ -1,21 +1,27 @@
-# Dockerfile
-
-# Use the official Python image as the base
+# Use Python slim image for a smaller footprint
 FROM python:3.12-slim
 
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
-
-# Set work directory
+# Set working directory
 WORKDIR /app
 
-# Install dependencies
-COPY requirements.txt .
-RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
+# Copy only the requirements file first to leverage Docker cache
+COPY requirements.txt requirements.txt
 
-# Copy project files, excluding those in .dockerignore
-COPY . .
+# Install git and project dependencies
+RUN apt-get update && \
+    apt-get install -y git && \
+    pip install --no-cache-dir -r requirements.txt && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
-# Define the default command to run the bot
+# Clone the GitHub repository (this will be replaced with your actual repo)
+# Note: If your repo is private, you'll need to set up SSH keys or use HTTPS with credentials
+ARG GITHUB_REPO
+RUN git clone https://github.com/${GITHUB_REPO}.git .
+
+# Set Python environment variables
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+# Command to run your application
 CMD ["python", "bot.py"]

@@ -1,0 +1,11 @@
+# .dockerignore
+
+# Ignore the chat_exports directory
+chat_exports/
+
+# Ignore LICENSE
+LICENSE
+README.md
+
+# Ignore config.py
+config.py
